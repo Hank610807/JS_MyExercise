@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variable 變數</title>
+</head>
+<body>
+    <script>
+        a = 100;    //臨時變數
+        var b = 200;    //宣告變數
+        var c;
+        var e = 'word E';
+
+        function test() {
+            var d = 100;
+            console.log(b);
+            console.log(d);
+        }
+
+        test();
+
+        console.log(b);
+        // console.log(d);     //d is not defined
+
+        console.clear();
+
+        function test2 (param) {
+            var b = 100;
+            console.log(b);
+        }
+
+        console.log('b(1) =', b);
+        test2();
+        console.log('b(2) =', b);
+
+        console.log('e =', e);      //e = word E
+        if (true) {
+            var e =100;
+            console.log(e);     //100
+        }
+
+        console.log(e);         //100
+    </script>
+</body>
+</html>

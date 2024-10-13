@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>if-else</title>
+</head>
+
+<body>
+    <script>
+        if (200 < 100) {
+            console.log('is true');
+        } else {
+            console.log('if false');
+        }
+
+        console.log('done');
+        console.clear();
+
+        a = 100;
+        if (a > 200) { console.log('超過200'); }
+        else if (a > 100) { console.log('超過100'); }
+        else {
+            console.log('100以下')
+        }
+
+        // if (a > 200) { console.log('超過200'); }
+        // else {
+        //     if (a > 100) { console.log('超過100'); }
+        //     else { console.log('100以下'); }
+        // }
+        console.clear();
+
+        const height = 190, face = true, cash = 50000;
+
+        if (height > 180 && face === true && cash > 10000) {
+            console.log('100分');
+        } else {
+            console.log('0 ~ 99 分');
+        }
+
+        if (height > 180 || face || cash > 10000) {
+            console.log('60 ~ 100 分');
+        } else {
+            console.log('59 分以下');
+        }
+
+        // 高帥至少有一個，但一定要有錢
+        if ((height > 180 || face) && (cash > 10000)) {
+            console.log('交往');
+        }
+        else {
+            console.log('當好朋友');
+        }
+
+        // if(30) console.log('A');
+        // if ('AA') console.log('AA');
+
+        // if (0) console.log('A');
+        // if (null) console.log('A');
+        // if (undefined) console.log('A')
+        console.clear();
+
+        // 三元運算子
+        let day = 7;    // 1 ~ 7
+        let msg;
+
+        if (day > 5) msg = '假日';
+        else msg = '平日';
+
+        console.log(msg);
+
+        console.log((day > 5) ? '假日' : '平日');
+
+
+    </script>
+</body>
+
+</html>

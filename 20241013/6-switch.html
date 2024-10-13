@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>switch-case</title>
+</head>
+
+<body>
+    <script>
+        const lang = 'jp';
+        let msg = null;
+
+        switch (lang) {
+            case 'tw':
+                msg = '台灣';
+                break;
+            case 'jp':
+                msg = '日文';
+                //break;
+            case 'kr':
+                msg = '韓文';
+                //break;
+            default:
+                msg = 'unknow';
+                break;
+        }
+
+        console.log(msg);   // unknow
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for</title>
+</head>
+
+<body>
+    <script>
+        for (let i = 0; i < 5; i++) {
+            console.log('hello', i);
+        }
+
+        console.clear();
+
+        var str = "";
+        for (let i = 0; i < 9; i++) {
+            str += i;
+        }
+        console.log(str);
+        console.clear();
+
+        //console 1, 4, 7, 10
+        // for(let i=1; i <= 10; i+=3) {
+        //     console.log(i);
+        // }
+
+        // for (let i = 0; i < 4; i++) {
+        //     console.log(i * 3 + 1);
+        // }
+
+        //console 1, 3, 5, 7, 11
+        // for(let i=1; i <= 11; i+=2) {
+        //     console.log(i);
+        // }
+
+        // for (let i = 0; i < 6; i++) {
+        //     console.log(i * 2 + 1);
+        // }
+        //console.clear();
+
+        // console 5, 10, 15, 20, 25
+        // for(let i=5; i <= 25; i+=5) {
+        //     console.log(i);
+        // }
+        // for (let i = 1; i <= 5; i++) {
+        //     console.log(i * 5);
+        // }
+        // console.clear();
+
+        // console 1, 2, 4, 8, 16, 32, 64
+        let now = 1;
+        for (let i = 0; i < 7; i++) {
+            console.log(now);
+            now *= 2;
+        }
+
+        // 9 * 9乘法表
+        for (let i = 2; i <= 9; i++) {
+            // if (i > 2) {
+            //     console.log('-------------');
+            // }
+            for (let j = 1; j <= 9; j++) {
+                console.log(`${i}*${j} = ${i * j}`)
+            }
+
+            if (i < 9) {
+                console.log('-------------');
+            }
+        }
+
+        let j;
+        for (let i = 2; i <= 9; i++) {
+            j = 1;
+            console.log(`${i}*${j} = ${i * j}`);
+            j = 2;
+            console.log(`${i}*${j} = ${i * j}`);
+            j = 3;
+            console.log(`${i}*${j} = ${i * j}`);
+            j = 4;
+            console.log(`${i}*${j} = ${i * j}`);
+            j = 5;
+            console.log(`${i}*${j} = ${i * j}`);
+            j = 6;
+            console.log(`${i}*${j} = ${i * j}`);
+            j = 7;
+            console.log(`${i}*${j} = ${i * j}`);
+            j = 8;
+            console.log(`${i}*${j} = ${i * j}`);
+            j = 9;
+            console.log(`${i}*${j} = ${i * j}`);
+
+            if (i < 9) {
+                console.log('-------------');
+            }
+        }
+
+    </script>
+</body>
+
+</html>

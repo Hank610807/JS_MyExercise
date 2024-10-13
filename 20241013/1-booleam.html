@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>boolean 布林值</title>
+</head>
+<body>
+    <script>
+        a = 100;
+        b = 100;
+        c = 200;
+        str1 = 'AA';
+        str2 = 'AA';
+        str3 = 'BB';
+        srrNum = '200';
+
+        console.log(a == b);    //true
+        console.log(a == c);    //false
+        consloe.log(a != c);    //true 
+
+
+        console.log(c == strNum);   //true
+        console.log(c === strNum);  //false
+        console.log(c !== strNum);  //true
+        console.clear();
+
+
+
+        ///////////////複合邏輯 /////////////////////
+        // &&: and, ||: or
+        consloe.log(true && false && true);     //false
+        console.log(true && true && true);      //true
+
+        console.log(false || false || false || true || false);      //true
+        console.log(false || false || false);   //false
+        console.log(false || 3);    //3
+        consloe.clear();
+
+        
+
+    </script>
+</body>
+</html>

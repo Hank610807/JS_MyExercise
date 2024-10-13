@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>let(Constant)</title>
+</head>
+
+<body>
+    <script>
+        let a = 100;    //可變化的數
+
+        // let a = 'A';    // err, 可以保護不會被重新被宣告
+        // a = 'A';    // Ok, 不重新被宣告,但可以指定
+
+        console.log('1. ' + a);
+        if (true) {
+            // let a = 'A';
+            // let b = 'B';
+            let a = 'A', b = 'B';
+            console.log('2. ' + a);
+        }
+        console.log('3. ' + a);
+        // console.log('4. ' + b);     //b is not defined
+        console.clear();
+
+        ///////////////////////////////////////////////////////////////////
+        const c = 100;  //宣告一個常數，全域常數
+
+        if (true) {
+            // console.log(c);     //Cannot access 'c' before initialization
+            const c = 'C';
+            console.log(c);
+        }
+
+        console.clear();
+
+        /////////////////////////////////////////////////////////////////
+        let aa = null;      //塞個沒有東西的物件
+        let bb;             //undefined
+        let cc = ''         //空字串
+        let dd = 5 * 'A';   //Nan: Not a Number
+
+        console.log(typeof(aa));      //'object'
+        console.log(typeof(bb));      //'undefined'
+        console.log(typeof(cc));      //'string'
+        console.log(typeof(dd));      //'number'
+        console.log(dd);              // NaN
+    </script>
+</body>
+
+</html>

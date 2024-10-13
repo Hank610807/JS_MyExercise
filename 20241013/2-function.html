@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcion自訂函式</title>
+</head>
+<body>
+    <script>
+        function hello() {
+            console.log('hello world');
+        }
+
+        //呼叫函式
+        hello();
+
+        function hello_1(name = 'to You') {     //for ES6,設定預設值,預防無參數時
+        //function hello_1(name) {
+            // if (name == undefined)
+            //     console.log('hello world');
+            // else
+            //     console.log(`hello world, ${name} !!`);
+            console.log(`hello world, ${name} !!`);
+        }
+
+        hello_1('Loki')
+        hello_1('Joker');
+        hello_1('Van');
+        hello_1();      //hello world, undefined
+
+        console.clear();
+
+        wold = function() {     //匿名函式
+            console.log('world');
+        }
+
+        varHello2 = function (name) {    //匿名函式
+            console.log(`hello ${name} !!`);
+        }
+        varHello2('Loki');
+
+        varHello3 = function sayHello (name) {    //匿名函式
+            console.log(`hello ${name} !!`);
+        }
+        varHello3('Loki');
+
+        (function () {  //匿名函式,direct run
+            console.log(`hello world`);
+        })();
+
+        // consloe.clear();
+
+        say1 = function (name) {
+            str = 'hello ' + name;
+            return str;
+        }
+
+        ans = say1('Loki');
+        console.log(ans);
+
+        say2 = function (name) {
+            return 'hello ' + name;
+        }
+
+        console.log(say2('Loki'));
+    </script>
+</body>
+</html>
