@@ -1,16 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         // 產生6個數字不重複, 1 ~ 49
-        const lotto = [];
-        
+        // let lottoPool = [];
+        // const getBall = [];
+
+        // for (let i = 0; i < 50; i++) {
+        //     lottoPool.push(`(${i})`);
+        // }
+
+        const rand = (min, max) => {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // for (let i = 1; i < 7; i++) {
+        //     const firstIndex = rand(0, lottoPool.length - 1);
+        //     const findBal = lottoPool[firstIndex];
+
+        //     getBall.push(findBal);
+
+        //     lottoPool = lottoPool.filter(function (checkBall) {
+        //         // console.log(val, lottoPool[firstIndex], val !== lottoPool[firstIndex]);
+        //         return checkBall != findBal;
+        //     });
+        // }
+
+        // console.log(getBall.sort());
+        // 包一個function,去產生六組
+
+        // Method 2
+        let lottoMachine = new Array(49);
+        let luckPool = [];
+
+        for (let i = 0; i < lottoMachine.length; i++) {
+                lottoMachine[i] = String(i + 1).padStart(2, '0');
+            }
+
+        for (let i = 0; i < 6; i++) {
+            const firstIndex = rand(0, lottoMachine.length - 1);
+
+            // resolve 1:
+            // const getAry = lottoMachine.splice(firstIndex, 1);
+            // luckPool.push(getAry[0]);
+
+            //resolve 2:
+            // const getAry = lottoMachine.splice(firstIndex, 1);
+            // luckPool.concat(getAry);
+
+            //resolve 2:
+            luckPool = luckPool.concat(lottoMachine.splice(firstIndex, 1));
+        }
+
+        // console.log(luckPool.sort(),lottoMachine);
+        console.log(luckPool.sort());
+
 
     </script>
 </body>
+
 </html>

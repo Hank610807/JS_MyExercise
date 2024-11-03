@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const now = Date();
+        // // tepeof now ==> string
+        // const time = new Date();
+        // // typeof time ==> Object
+        // // 月份是索引值, 0 ~ 11即1月~ 12月
+        // const lastTime1 = new Date(2024, 11, 31, 23, 59, 59, 999);
+        // const lastTime2 = new Date('2024-11-31T23:59:59');
+        // const monthStr = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+        // const dayStr = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+
+        // console.log(time.getFullYear());
+        // console.log(time.getMonth());
+        // console.log(monthStr[time.getMonth()]);
+        // console.log(time.getDate());
+        // console.log(time.getHours());
+        // console.log(time.getMinutes());
+        // console.log(time.getSeconds());
+        // console.log(time.getMilliseconds());
+        // console.log(time.getDay()); // 0 ~ 6
+        // console.log(dayStr[time.getDay()]); // 0 ~ 6
+        // console.log(time.getTime());
+
+        // 時間倒數
+        const now = new Date();
+        // const lastTime = new Date(2024, 11, 31, 23, 59, 59, 999);
+        const lastTime = new Date(now.getFullYear() + 1, 0);
+        let diffTime = lastTime.getTime() - now.getTime();
+        let hour, mins, sec, day;
+
+        diffTime = Math.floor(diffTime / 1000);
+        sec = diffTime % 60;
+        mins = Math.floor(diffTime / 60) % 60;
+        // hour = Math.floor(Math.floor(diffTime / 60) / 60) % 24;
+        hour = Math.floor(diffTime / 60 / 60) % 24;
+        // day = Math.floor(Math.floor(Math.floor(diffTime / 60) / 60) / 24);
+        day = Math.floor(diffTime / 60 / 60 / 24);
+
+        // console.log(diffTime + '秒');
+        // console.log(sec + '秒');
+        // console.log(mins + '分');
+        // console.log(hour + '時');
+        // console.log(day + '天');
+        console.log(`距離${now.getFullYear() + 1}剩: ${day}天 ${hour}時 ${mins}分 ${sec}秒`);
+    </script>
+</body>
+
+</html>
