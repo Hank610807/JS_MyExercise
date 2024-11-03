@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const ary = [];
+        for (let i = 0; i < 10; i++) {
+            ary.push(`A${i}`);
+        }
+
+        // for (let index = 0; index < ary.length; index++) {
+        //     console.log(ary[index]);
+        // }
+
+        // function showMe(val, idx) {
+        //     console.log(`index=> ${idx}, value=> ${val}`);
+        // }
+
+        // ary.forEach(showMe);
+
+        // 一次性function
+        // ary.forEach(function(val, idx){
+        //     console.log(`index=> ${idx}, value=> ${val}`);
+        // });
+        console.log('1. -------------')
+        ary.forEach(function(val, idx) {
+            console.log(`index=> ${idx}, value=> ${val}`);
+        });
+
+        console.log('2. -------------')
+        ary.forEach((val, idx) => {
+            console.log(`index=> ${idx}, value=> ${val}`);
+        })
+
+        console.log('3. -------------')
+        ary.forEach((val, idx) => console.log(`index=> ${idx}, value=> ${val}`));
+
+        for(const item of ary) {
+            console.log(item);
+        }
+
+        //filter: return true, 保留, return false:不要的
+        let newAry;
+        newAry = ary.filter((val) => val !== 'A9');
+
+        // map
+        lokiTest = newAry.map((val) => val + '~~');
+
+        //include, find找一個還給你, reduce可研究
+    </script>
+</body>
+
+</html>

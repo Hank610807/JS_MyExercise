@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 物件是拿來存資料的,陣列是拿來計算整理用的
+        let student = {
+            name: 'loki',
+            age: 18,
+            gender: 'male',
+            alive: true,
+            say: function () {
+                console.log('time wait for no one');
+            }
+        };
+
+        student['name'];
+        student.name;
+
+        student.say();
+        student['say']();
+
+        console.log('name' in student);
+
+        Object.values(student);
+        console.log(Object.values(student));
+
+        // 解構建構
+        // const {name, age, gender, alive, say} = student;
+        // const stdB = {name, age, gender, alive, say};
+
+        const stdB = { ...student };
+
+        // stdB.name = 'jack'
+        // stdB.age = 25;
+
+        // student = {...stdB};
+
+        const mdy = {
+            name: 'jack',
+            alive: false
+        };
+
+        // student = { name, age, gender, alive, say, name: 'jack', alive: false };
+        student = { ...student, ...mdy }
+    </script>
+</body>
+
+</html>

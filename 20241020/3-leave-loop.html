@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // continue
+        for (let i = 0; i < 10; i++) {
+            if (i === 4) continue;
+            console.log(i);
+        }
+
+        console.clear()
+        // break
+        for (let i = 0; i < 10; i++) {
+            if (i === 7) break;
+            console.log(i);
+        }
+
+        console.clear()
+        // return
+        // function resay() {
+        function parrot(str) {
+            // console.log('hello 1');
+            // return 0;
+            // console.log('hello 2')
+
+            // if (str === undefined) return;
+            // 0, null, undefined, 空字串都是false
+            if (!str) {
+                console.log('parrot not speak anything')
+                return;
+            }
+
+            let j = 4;
+            while (j > 0) {
+                console.log(`${str}~~~~`);
+
+                if (str === 'mute') return;
+                j--;
+            }
+        }
+
+        // parrot('mute');
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let myAryAA = [];
+        let myAryAB = new Array();
+        let myAryAC = new Array(1, 2, 'A', true);
+        let myAryAD = [1, 2, 'A', true]
+
+        myAryAD.push(32);
+        myAryAD.unshift('hank');
+        let bb = myAryAD.pop();
+        let bbb = myAryAD['pop']();
+        let cc = myAryAD.shift();
+        let ccc = myAryAD['shift']();
+
+        let dd = myAryAD.length;
+        let ddd = myAryAD['length'];
+
+        let aryInit = [1, 2, 3];
+        // let cloneAry = aryInit;     // 記憶體汙染
+        let cloneAry = [...aryInit];    // 解構與重購
+
+        let a = [1, 2, 3];
+        let b = [...a];
+        b.push('A');
+        console.log(b)
+        console.log(a);
+
+        let c = [...a, 4];
+        console.log(c);
+
+        let d = [...a, ...b, ...c];
+        console.log(d);
+
+        // a.push('C');
+        a = [...a, 'C']
+        console.log(a);
+
+        // pop ==> filter, find
+        
+
+        ////////////////////Two Dimetion///////////////////////////////
+        function hello(){
+            console.log('hello');
+        }
+
+        let minAry = ['A', 'B', 'C'];
+        let nestingAry = [hello, minAry]
+
+        let netA = nestingAry.pop();
+
+
+        const ary2 = [1, 2, 3];
+        // ary2 = [1, 2, 3, 'A'];       // error
+        ary2.push('A');
+    </script>
+</body>
+
+</html>

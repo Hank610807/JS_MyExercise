@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const str = 'hello world';
+        console.log(str.length);
+
+        const ary = [1, 2, 3];
+        console.log(ary.length);
+
+        const strNum = '100';
+        const realNum = 100;
+        console.log(strNum + 3 + realNum);
+        console.log(strNum + (3 + realNum));
+
+        console.log(Number(strNum));    // 100
+        console.log(+strNum);   // 100
+        console.log(String(realNum));     // '100'
+        console.log(realNum.toString());     // '100'
+
+        console.log(typeof String(realNum));     // string
+        console.log(typeof realNum.toString());     // string
+
+        // typeof: boolen, object(array:[] or object:{}), number, string
+        let input = '300';
+        if (typeof (input) === 'string') input = +input;
+        console.log(100 + input + 100);
+
+    </script>
+</body>
+</html>

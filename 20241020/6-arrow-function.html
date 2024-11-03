@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function showMe(val, indx) {
+            console.log(`index=> ${idx}, value=> ${val}`);
+        }
+        aa = showMe;
+
+        bb = function (val, indx) {
+            console.log(`index=> ${idx}, value=> ${val}`);
+        }
+
+        // 箭頭函式
+        cc = (val, indx) => {
+            console.log(`index=> ${idx}, value=> ${val}`);
+        }
+        // 1.可節省成1行
+        // cc = (val, indx) => console.log(`index=> ${idx}, value=> ${val}`);
+        // 2.可節省return
+        // cc = (v) => return v * 2;
+        // cc = (v) => v * 2;
+        // cc = () => 'hello world';
+    </script>
+</body>
+
+</html>
