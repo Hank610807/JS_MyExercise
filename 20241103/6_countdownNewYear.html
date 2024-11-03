@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        setInterval(() => {
+            const now = new Date();
+            const lastTime = new Date(now.getFullYear() + 1, 0);
+            let diffTime = Math.floor((lastTime.getTime() - now.getTime()) / 1000);
+            let hour, mins, sec, day;
+
+            sec = diffTime % 60;
+            mins = Math.floor(diffTime / 60) % 60;
+            hour = Math.floor(diffTime / 60 / 60) % 24;
+            day = Math.floor(diffTime / 60 / 60 / 24);
+
+            console.clear();
+            console.log(`距離${now.getFullYear() + 1}剩: ${day}天 ${hour}時 ${mins}分 ${sec}秒`);
+        }, 1000);
+
+
+    </script>
+</body>
+
+</html>
