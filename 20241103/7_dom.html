@@ -48,8 +48,8 @@
             document.querySelectorAll('.list');
             document.querySelector('h1');
             console.log(document.querySelector('#demo>li.hot'));
-            document.querySelectorAll('#demo>li.not(.hot)');
-            document.querySelector('#demo>li.nth-child(3)');
+            console.log(document.querySelectorAll('#demo>li:not(.hot)'));
+            console.log(document.querySelector('#demo>li:nth-child(3)'));
 
         }
     </script>
