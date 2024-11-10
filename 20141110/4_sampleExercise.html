@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="myBlock" style="width:100px;height:100px;background-color: red;"></div>
+    <hr />
+    <input type="button" value="正方形" onclick="trans('A')" />
+    <input type="button" value="圓形" onclick="trans('B')" />
+    <input type="button" value="三角形" onclick="trans('C')" />
+    <p>Color Code: <input type="text" value="red" onchange="color(this.value)" /></p>
+
+    <script>
+        const zone = document.getElementById("myBlock");  // Object
+        // let nowColor = zone.style.backgroundColor; // string: red
+
+        // 改形狀
+        document.querySelectorAll('input[type=button]').forEach(item => {
+            console.log(item);
+            console.log(item.value);
+            item.addEventListener('click', () => {
+                // trans(item.value);
+                trans(this.value);
+            })
+        });
+
+        // 改顏色
+        document.querySelector('input[type=text]').addEventListener('change', ()=>{
+            console.log(this.value);
+            trans(this.value);
+        });
+
+        function trans(re) {
+            switch (re) {
+                // case "A":
+                case "正方形":
+                    zone.style = `width:100px;height:100px;background-color: ${nowColor};`;
+                    // zone.style = "width:100px;height:100px;background-color:"+clr;
+                    // zone.style.clipPath = 'polygon(0, )'
+                    break;
+                // case "B":
+                case "圓形":
+                    zone.style = `width:100px;height:100px;border-radius: 50px;background-color: ${nowColor};`;
+                    // zone.style = "width:100px;height:100px;background-color:"+clr+";border-radius: 50px;";
+                    break;
+                // case "C":
+                case "三角形":
+                    zone.style = `
+                        width:0;
+                        height:0;
+                        border-left: 50px solid transparent;
+                        border-right: 50px solid transparent;
+                        border-bottom: 100px solid ${nowColor};
+                    `;
+                    // zone.style = "width:0;height:0;border-left: 50px solid transparent;border-right: 50px solid transparent;border-bottom: 100px solid "+clr+";";
+                    break;
+            }
+        }
+
+        function color(colorCode) {
+            console.log(colorCode);
+            //目前的顏色換掉
+            if (zone.style.backgroundColor) {
+                zone.style.backgroundColor = colorCode;
+            }
+            else{
+                zone.style.boarderBottom = `100px solid ${colorCode}`;
+            }
+
+            nowColor = colorCode; //把所有的色變數更新一下
+        }
+
+        // method 2: CSS, clip-path
+    </script>
+</body>
+
+</html>
