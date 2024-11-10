@@ -17,39 +17,19 @@
 
     <script>
         const zone = document.getElementById("myBlock");  // Object
-        // let nowColor = zone.style.backgroundColor; // string: red
-
-        // 改形狀
-        document.querySelectorAll('input[type=button]').forEach(item => {
-            console.log(item);
-            console.log(item.value);
-            item.addEventListener('click', () => {
-                // trans(item.value);
-                trans(this.value);
-            })
-        });
-
-        // 改顏色
-        document.querySelector('input[type=text]').addEventListener('change', ()=>{
-            console.log(this.value);
-            trans(this.value);
-        });
+        let nowColor = zone.style.backgroundColor; // string: red
 
         function trans(re) {
             switch (re) {
-                // case "A":
-                case "正方形":
+                case "A":
                     zone.style = `width:100px;height:100px;background-color: ${nowColor};`;
                     // zone.style = "width:100px;height:100px;background-color:"+clr;
-                    // zone.style.clipPath = 'polygon(0, )'
                     break;
-                // case "B":
-                case "圓形":
+                case "B":
                     zone.style = `width:100px;height:100px;border-radius: 50px;background-color: ${nowColor};`;
                     // zone.style = "width:100px;height:100px;background-color:"+clr+";border-radius: 50px;";
                     break;
-                // case "C":
-                case "三角形":
+                case "C":
                     zone.style = `
                         width:0;
                         height:0;
@@ -69,13 +49,13 @@
                 zone.style.backgroundColor = colorCode;
             }
             else{
-                zone.style.boarderBottom = `100px solid ${colorCode}`;
+                zone.style.borderBottom = `100px solid ${colorCode}`;
             }
 
             nowColor = colorCode; //把所有的色變數更新一下
         }
 
-        // method 2: CSS, clip-path
+        // method 2: CSS, clip-path, please reference for 5_sampleExercise2.html
     </script>
 </body>
 
