@@ -94,8 +94,8 @@ const runCalendarService = () => {
             // obj.title = `${monthIndexToString[obj.thisDate.month()]} ${obj.thisDate.year()}`
 
             // method 3:
-            const twMonth = window.dayjs_locale_zh_tw.month;
-            obj.title = `${twMonth[obj.thisDate.month()]} ${obj.thisDate.year()}`
+            const twMonth = window.dayjs_locale_zh_tw.months;
+            obj.title = `${twMonth[obj.thisDate.month()]} ${obj.thisDate.year()}`;
 
             // console.log(firstDay, totalDay)
             return obj;
