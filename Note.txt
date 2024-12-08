@@ -1,0 +1,25 @@
+週日 => 0 i = [1,7,8,14,15,21,22,28,29]
+
+
+某日 => x, (x+i) = 1,7,8,14,15,21,22,28,29
+某日 => x, (x+i) = 1,7,8,14,15,21,22,28,29除以7的餘數
+某日 => x, (x+i) = 除以7的餘數 ==> [0, 1]
+
+x ==>查該月第一天是禮拜幾 = firstDay
+i ==> 迴圈內的日期數
+
+(firstDay + i)%7 (符合0 or 1) 為假日
+(firstDay + i)%7 < 2 為假日
+
+
+
+
+array reduce()  //疊加
+reduce((preTurn, cur)=>{return preTurn+cur}, 0)
+
+
+Obect.values()  //從物件抽出陣列
+
+
+
+mui,   date-picker
