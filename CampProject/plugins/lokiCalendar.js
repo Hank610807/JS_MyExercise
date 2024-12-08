@@ -116,7 +116,7 @@ const runCalendarService = () => {
         //     thisDate: theDay.add(1, 'month'),
         // },
         userChooseDays = [null, null],
-        defaultTableData = tableData,
+        defaultTableData = {...tableData},       // to look Note.txt(解構與組構方式)
         changeMoth = (num) => {
             theDay = theDay.add(num, 'month');
             calendarLeft = {

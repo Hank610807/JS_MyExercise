@@ -23,3 +23,12 @@ Obect.values()  //從物件抽出陣列
 
 
 mui,   date-picker
+
+1208
+JSON.stringify() 物件轉字串
+JSON.parsh() 字串轉物件
+
+利用解構,重構
+let lokiData ={a:1, b:2}
+let initLokiData = {...lokiData}
+
