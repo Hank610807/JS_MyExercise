@@ -32,3 +32,6 @@ JSON.parsh() 字串轉物件
 let lokiData ={a:1, b:2}
 let initLokiData = {...lokiData}
 
+for (const key in obj) {
+    console.log(obj[key]);      //會列出obj個元素的內容
+}

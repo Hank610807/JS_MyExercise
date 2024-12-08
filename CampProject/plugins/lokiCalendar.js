@@ -23,7 +23,7 @@ let
             cArea: { title: '平原 × C 區', sellCount: 0, sellInfo: '<div></div>', sumPrice: 0, orderCount: 0 },
             dArea: { title: '車屋 × D 區', sellCount: 0, sellInfo: '<div></div>', sumPrice: 0, orderCount: 0 }
         }
-    }
+    };
 
 
 // 串接後台
@@ -53,7 +53,7 @@ const init = () => {
             // nantionalHolidy = json.nantionalHolidy;
             // json是個物件,用解構子去把資料存到相對應的變數去
             // { booked, booked, nantionalHolidy } = json
-            ({ booked, booked, nationalHoliday } = json);    // 因為上列會發生error的解法
+            ({ booked, pallet, nationalHoliday } = json);    // 因為上列會發生error的解法
 
             myCalendar = runCalendarService();
             myCalendar.print();     //調用print的函式
@@ -70,6 +70,25 @@ const init = () => {
                 // theDay = theDay.add(-1, 'month')
                 // runCalendarService();
                 myCalendar.sub();
+            });
+
+            const nodeSelects = document.querySelectorAll('select');
+
+            nodeSelects.forEach(nodeSelect => {
+                nodeSelect.onchange = (e) => {
+                    // console.log(e);
+                    tableData.totalPrice = 0;
+                    nodeSelects.forEach(item => {    // 4組相加
+                        // console.log(item.value);
+                        tableData.totalPrice += parseInt(item.value) * tableData.pallet[item.name].sumPrice
+
+                        tableData.pallet[item.name].orderCount = parseInt(item.value);
+                    });
+
+
+
+                    document.querySelector('#selectPallet h3').textContent = `$${tableData.totalPrice} / ${tableData.normalCount}晚平日，${tableData.holidayCount}晚假日`;
+                }
             });
 
             myCalendar.tableReferesh();
@@ -116,21 +135,32 @@ const runCalendarService = () => {
         //     thisDate: theDay.add(1, 'month'),
         // },
         userChooseDays = [null, null],
-        defaultTableData = {...tableData},       // to look Note.txt(解構與組構方式)
-        changeMoth = (num) => {
-            theDay = theDay.add(num, 'month');
-            calendarLeft = {
-                title: '',
-                listBox: '',
-                thisDate: theDay,
-            }
+        // defaultTableData = {
+        //     ...tableData,
+        //     pallet: {
+        //         ...tableData.pallet,
+        //         aArea: {...pallet.aArea},
+        //         bArea: {...pallet.bArea},
+        //         cArea: {...pallet.cArea},
+        //         dArea: {...pallet.dArea}
+        //     }
+        // },       // to look Note.txt(解構與組構方式)
+        IintdefaultTableStr = JSON.stringify(tableData);
 
-            calendarRight = {
-                title: '',
-                listBox: '',
-                thisDate: theDay.add(1, 'month'),
-            }
-        },
+    changeMoth = (num) => {
+        theDay = theDay.add(num, 'month');
+        calendarLeft = {
+            title: '',
+            listBox: '',
+            thisDate: theDay,
+        }
+
+        calendarRight = {
+            title: '',
+            listBox: '',
+            thisDate: theDay.add(1, 'month'),
+        }
+    },
         chooseList = (node) => {
             // console.log(node.dataset.date);
 
@@ -179,7 +209,7 @@ const runCalendarService = () => {
                 document.querySelectorAll('li.selectDay').forEach(item => item.classList.remove('selectConnect'));
             }
 
-            console.log(userChooseDays);
+            // console.log(userChooseDays);
             // console.log(userChooseDays[1]);
         },
         listMaker = (obj) => { //調整萬年曆物件,調整完畢後,返回修改後的物件
@@ -258,7 +288,7 @@ const runCalendarService = () => {
             return obj;
         },
         listPrint = () => { // 輸出到DOM
-            console.log('create list of aclendar');
+            // console.log('create list of aclendar');
             // console.log(calendarLeft, calendarRight);
             // const temp = listMaker(calendarLeft);
             // console.log(temp, calendarLeft);
@@ -286,12 +316,63 @@ const runCalendarService = () => {
             });
         },
         tableMaker = () => {
-              console.log('整理 tableData');
+            //   console.log('負責翻新 tableData');
+            // tableData = {...tableData, ...defaultTableData};
+            tableData = JSON.parse(IintdefaultTableStr);
+
+            // 1.修正sellCount
+            for (const key in tableData.pallet) {
+                tableData.pallet[key].sellCount = pallet[key].total;
+            }
+
+            // 2.去得知User選擇AB日期
+            document.querySelectorAll('li.selectHead', 'li.selectConnect').forEach(item => {
+                // console.log(item.dataset.date);
+
+                for (const key in tableData.pallet) {    //獲取四個pallet名字
+                    // const hsOrder = booked.find(bookItem => {
+                    //     // console.log(bookItem.date);
+                    //     return bookItem.date === item.dataset.date;
+                    // });
+
+                    const hsOrder = booked.find(bookItem => bookItem.date === item.dataset.date);
+
+                    // 2-1. 如果後端有當日的訂單,更新房況的剩餘數
+                    if (hsOrder) {
+                        // console.log(hsOrder);
+                        // 在連續的日子可賣出的房數必須是這些剩餘房況的最小值
+                        tableData.pallet[key].sellCount = Math.min(tableData.pallet[key].sellCount, pallet[key].total - hsOrder.sellCount[key]);
+                    }
+
+                    // 2-2
+                    if (tableData.pallet[key].sellCount) {
+                        // 提供日期跟價格
+                        console.log(item.dataset.dat);
+
+                        const dayPrice = item.classList.contains('holiday') ? pallet[key].holidayPrice : pallet[key].normalPrice;
+                        // const dayPrice = pallet[key][item.classList.contains('holiday') ? 'holidayPrice' : 'normalPrice'];
+
+                        // console.log(item.dataset.date, dayPrice);
+                        tableData.pallet[key].sellInfo += `<div>${item.dataset.date} (${dayPrice})</div>`;
+                        tableData.pallet[key].sumPrice += dayPrice;
+                    } else {    // 筆記無的bug
+                        tableData.pallet[key].sellInfo = '<div>已售完</div>';
+                        tableData.pallet[key].sumPrice = 0;
+                    }
+                }
+
+                // 2-3
+                // item.classList.contains('holiday') ? tableData.holidayCount++ : tableData.normalCount++;
+                tableData[item.classList.contains('holiday') ? 'holidayCount' : 'normalCount']++;
+            });
+
+            // console.log(tableData);
+            tablePrint();
         },
         tablePrint = () => {
-            console.log('開始渲染右邊表格, tableData做成HTML');
+            // console.log('開始渲染右邊表格, tableData做成HTML');
             // document.querySelectorAll('form select').forEach(nodeSelect =>{
-            document.querySelectorAll('#selectPallet select').forEach(nodeSelect =>{
+            document.querySelectorAll('#selectPallet select').forEach(nodeSelect => {
                 const palletName = nodeSelect.name;
 
                 //td>select>option ?個
@@ -299,7 +380,7 @@ const runCalendarService = () => {
 
                 let optStr = "";
                 for (let i; i < countOption; i++) {
-                    optStr +=`<option value="${i}">${i}</option>`;
+                    optStr += `<option value="${i}">${i}</option>`;
                 }
 
                 nodeSelect.innerHTML = optStr;
@@ -310,7 +391,7 @@ const runCalendarService = () => {
                 //select> td> 上個td(sellInfo位置)
                 const tdSellInfo = nodeSelect.parentElement.previousElementSibling;
                 tdSellInfo.innerHTML = tableData.pallet[palletName].sellInfo;
-            
+
                 //td(selectlInfo) ~ td > label > span
                 // tdSellInfo.previousElementSibling.children.item(1).children.item(0).innerHTML = 99;
                 const tdRemain = tdSellInfo.previousElementSibling.querySelector('span');
@@ -324,12 +405,12 @@ const runCalendarService = () => {
     return {
         print: () => listPrint(),
         add: () => {
-            console.log('right');
+            // console.log('right');
             changeMoth(1);
             listPrint();
         },
         sub: () => {
-            console.log('left');
+            // console.log('left');
             changeMoth(-1);
             listPrint();
         },
