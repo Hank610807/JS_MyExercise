@@ -85,11 +85,88 @@ const init = () => {
                         tableData.pallet[item.name].orderCount = parseInt(item.value);
                     });
 
-
-
                     document.querySelector('#selectPallet h3').textContent = `$${tableData.totalPrice} / ${tableData.normalCount}晚平日，${tableData.holidayCount}晚假日`;
+                    document.querySelector('#selectPallet button').disabled = tableData.totalPrice === 0;
                 }
             });
+
+
+            const orderOffcavnvas = new bootstrap.Offcanvas('.offcanvas');
+            const nodeOffcanvas = document.querySelector('#orderForm');
+            document.querySelector('#selectPallet button').onclick = (e) => {
+                let listStr = '';
+                for (const key in tableData.pallet) {
+                    if (tableData.pallet[key].orderCount === 0) continue;
+                    // if (tableData.pallet[key].orderCount > 0) { };
+
+                    listStr += `
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">${tableData.pallet[key].title}</div>
+                                <div>
+                                    ${tableData.pallet[key].sellInfo}
+                                </div>
+                            </div>
+                            <span class="badge bg-warning rounded-pill">x <span class="fs-6">${tableData.pallet[key].orderCount}</span>帳</span>
+                        </li>
+                    `;
+                }
+
+                // document.querySelector('#oderForm ol').innerHTML = listStr;
+                nodeOffcanvas('ol').innerHTML = listStr;
+                // document.querySelector('#oderForm .card-header.h5').innerHTML = listStr;
+                // document.querySelector('#oderForm .card-header.h5').innerHTML = document.querySelector('#selectPallet h3').textContent;
+                nodeOffcanvas('.card-header.h5').innerHTML = document.querySelector('#selectPallet h3').textContent;
+                orderOffcavnvas.show();
+            };
+
+            // document.forms.orderForm.onsubmit = (e) =>{
+            document.querySelector('#orderForm').onsubmit = (e) => {
+                e.preventDefault(); //阻擋html form遇到 submit會發生指向action動作
+                console.log('訂單送出');
+
+                // 1.客製化
+                const sendData = new FormData(e.target);
+                // for(const [key, value] of sendData) {    //檢查用..(看不到)
+                //     console.log(key, value);
+                // }
+
+                // 自訂兩個欄位,擴增到sendData
+                const selectDate = [...document.querySelectorAll('li.selectHead', 'li.selectConnect')].map(item => item.dataset.date);
+                selectDate.append('selectData', JSON.stringify(selectDate));
+
+                // 目標 = {"aArea": 2, "bArea": 2, "cArea": 2, "dArea": 2} ==> JASON格式
+                const sellOut = {};
+                // ['aArea', 'bArea', 'cArea', 'dArea'].forEach(key=>{
+                Object.keys(tableData.pallet).forEach(key => {
+                    sellOut[key] = tableData.pallet[key].orderCount;
+                })
+                sendData.append('selectDate', JSON.stringify(sellOut));
+
+                // 2.驗證表單
+                // console.log(e.target.checkValidity())
+                if (!e.target.checkValidity()) {
+                    // 表單無效
+                    // return;
+                    e.target.classList.add('was-validation');
+                } else {
+                    // 3. 送出表單
+                    // fetch post
+                    fetch('https://jsonplaceholder.typicode.com/posts', {
+                        method: 'POST',
+                        body: sendData,
+                        // headers: { 'Content-Type': 'multipart/form-data' }
+                    })
+                        .then(res => res.json())
+                        //   .then(json=>console.log(json));
+                        .then(json => {
+                            if (json.id) {
+                                AudioListener('感謝你的預約,你的訂單編號為:' + json.id)
+                                document.location.reload();
+                            }
+                        });
+                }
+            };
 
             myCalendar.tableReferesh();
         });

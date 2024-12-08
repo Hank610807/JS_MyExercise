@@ -35,3 +35,12 @@ let initLokiData = {...lokiData}
 for (const key in obj) {
     console.log(obj[key]);      //會列出obj個元素的內容
 }
+
+JASON vs Obect
+JASON
+    {"a": 1, "b": 2}
+
+Obect
+    {a: 1, b: 2}
+
+html 蘭未必填:: required
